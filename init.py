@@ -1,5 +1,5 @@
 import sys, os, subprocess
-# args: dimen numnodes pausetime basis
+DIR='/home/nirupam/Packages/'
 rp = ['AODV', 'DSDV', 'DSR']
 basis = { 'p' : ['0' ,'30' , '90', '120', '150'] ,\
           'n' : ['10', '20', '30', '40', '50'],\
@@ -13,12 +13,12 @@ if b == 'p':
     n = raw_input('Number of nodes? : ')
     d = raw_input('Dimensions? : ')
     for p in basis[b]:
-        os.chdir('/home/nirupam/Packages/ns-allinone-2.35/ns-2.35/indep-utils/cmu-scen-gen/setdest')
+        os.chdir(DIR+'ns-allinone-2.35/ns-2.35/indep-utils/cmu-scen-gen/setdest')
         cmd = ['./setdest', '-v', '1', '-x', d, '-y', d, '-n', n, '-p', p, '-M', '50', '-t', '150', '>', cwd+'/NodesCreate.tcl']
         print '\n\n\nSetting nodes for pause time '+ p
         os.system(' '.join(cmd))
 
-        os.chdir('/home/nirupam/Packages/ns-allinone-2.35/ns-2.35/indep-utils/cmu-scen-gen/')
+        os.chdir(DIR+'ns-allinone-2.35/ns-2.35/indep-utils/cmu-scen-gen/')
         cmd = ['ns', 'cbrgen.tcl', '-type', 'tcp', '-nn', n, '-seed', '1.0', '-mc', str(int(n)/4), '>', cwd+'/ConCreate.tcl']
         print 'Creating connection for pause time '+ p
         os.system(' '.join(cmd))
@@ -37,12 +37,12 @@ if b == 'n':
     p = raw_input('Pause Time? : ')
     d = raw_input('Dimensions? : ')
     for n in basis[b]:
-        os.chdir('/home/nirupam/Packages/ns-allinone-2.35/ns-2.35/indep-utils/cmu-scen-gen/setdest')
+        os.chdir(DIR+'ns-allinone-2.35/ns-2.35/indep-utils/cmu-scen-gen/setdest')
         cmd = ['./setdest', '-v', '1', '-x', d, '-y', d, '-n', n, '-p', p, '-M', '50', '-t', '150', '>', cwd+'/NodesCreate.tcl']
         print '\n\n\nSetting nodes for number '+ n
         os.system(' '.join(cmd))
 
-        os.chdir('/home/nirupam/Packages/ns-allinone-2.35/ns-2.35/indep-utils/cmu-scen-gen/')
+        os.chdir(DIR+'ns-allinone-2.35/ns-2.35/indep-utils/cmu-scen-gen/')
         cmd = ['ns', 'cbrgen.tcl', '-type', 'tcp', '-nn', n, '-seed', '1.0', '-mc', str(int(n)/4), '>', cwd+'/ConCreate.tcl']
         print 'Creating connection for number of nodes '+ n
         os.system(' '.join(cmd))
@@ -61,12 +61,12 @@ if b == 'd':
     n = raw_input('Number of nodes? : ')
     p = raw_input('Pause Time? : ')
     for d in basis[b]:
-        os.chdir('/home/nirupam/Packages/ns-allinone-2.35/ns-2.35/indep-utils/cmu-scen-gen/setdest')
+        os.chdir(DIR+'ns-allinone-2.35/ns-2.35/indep-utils/cmu-scen-gen/setdest')
         cmd = ['./setdest', '-v', '1', '-x', d, '-y', d, '-n', n, '-p', p, '-M', '50', '-t', '150', '>', cwd+'/NodesCreate.tcl']
         print '\n\n\nSetting nodes for dimension '+ d
         os.system(' '.join(cmd))
 
-        os.chdir('/home/nirupam/Packages/ns-allinone-2.35/ns-2.35/indep-utils/cmu-scen-gen/')
+        os.chdir(DIR+'ns-allinone-2.35/ns-2.35/indep-utils/cmu-scen-gen/')
         cmd = ['ns', 'cbrgen.tcl', '-type', 'tcp', '-nn', n, '-seed', '1.0', '-mc', str(int(n)/4), '>', cwd+'/ConCreate.tcl']
         print 'Creating connection for dimension '+ d
         os.system(' '.join(cmd))
